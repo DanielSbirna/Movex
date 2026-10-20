@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movex - Authentication</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="movex.css" />
+    <style>
+      .auth-container {
+        min-height: calc(
+          100vh - 56px - 64px
+        ); /* Viewport minus header/footer */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+      .auth-logo-large {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 32px;
+      }
+      .auth-logo-large img {
+        height: 64px;
+        width: auto;
+      }
+      .auth-logo-large span {
+        font-size: 2.8rem;
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+      .auth-controls {
+        display: inline-flex;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 30px;
+        padding: 4px;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 40px;
+      }
+      .auth-tab {
+        padding: 8px 24px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        color: var(--text-dim);
+        transition: all 0.2s ease;
+      }
+      .auth-tab.active {
+        background: var(--orange);
+        color: var(--white);
+      }
+      .auth-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        color: var(--orange);
+        cursor: pointer;
+        margin-right: 12px;
+        transition: background 0.2s;
+      }
+      .auth-back-btn:hover {
+        background: var(--orange-dim);
+      }
+      .auth-window-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 40px;
+        max-width: 760px;
+        width: 100%;
+      }
+      .auth-form-side {
+        flex: 1;
+      }
+      .auth-graphic-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .auth-graphic-side img {
+        max-width: 220px;
+        height: auto;
+        margin-bottom: 12px;
+      }
+      .auth-graphic-side p {
+        font-size: 0.75rem;
+        font-style: italic;
+        color: var(--text-dim);
+      }
+      .form-group {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        position: absolute;
+        top: -8px;
+        left: 12px;
+        background: var(--surface);
+        padding: 0 6px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--orange);
+        letter-spacing: 0.05em;
+      }
+      .form-group input {
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 12px 16px;
+        color: var(--white);
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-group input:focus {
+        border-color: var(--orange);
+      }
+      .password-toggle {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-dim);
+        cursor: pointer;
+        user-select: none;
+      }
+      .password-toggle:hover {
+        color: var(--orange);
+      }
+      .auth-submit-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      /* Utility Visibility states */
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div
+        class="nav-logo"
+        onclick="window.location.href = 'movex.html'"
+        style="cursor: pointer"
+      >
+        <img src="assets/Movex_M_Logo.png" alt="Movex" />
+      </div>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <span
+            class="dropdown-trigger"
+            onclick="window.location.href = 'movex.html'"
+            >Home</span
+          >
+        </li>
+      </ul>
+      <div class="nav-right">
+        <span class="login-btn" onclick="window.location.href = 'movex.html'">
+          <span class="material-icons" style="font-size: 18px">arrow_back</span>
+          Exit Portal
+        </span>
+      </div>
+    </nav>
+
+    <main class="auth-container">
+      <div class="auth-logo-large">
+        <img src="assets/Movex_M_Logo.png" alt="Movex Logo" />
+        <span>MoveX</span>
+      </div>
+
+      <div style="display: flex; align-items: center">
+        <div
+          class="auth-back-btn"
+          onclick="window.location.href = 'movex.html'"
+        >
+          <span class="material-icons" style="font-size: 18px">arrow_back</span>
+        </div>
+        <div class="auth-controls">
+          <div
+            class="auth-tab active"
+            id="tab-login"
+            onclick="switchAuthMode('login')"
+          >
+            Log In
+          </div>
+          <div
+            class="auth-tab"
+            id="tab-signup"
+            onclick="switchAuthMode('signup')"
+          >
+            Sign Up
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-window-wrapper">
+        <div class="auth-form-side">
+          <form id="auth-form" autocomplete="off">
+            <div class="form-group hidden" id="field-fullname">
+              <label for="register-name">Full Name</label>
+              <input
+                type="text"
+                id="register-name"
+                placeholder="Full Name / Company Name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="auth-email">Email</label>
+              <input
+                type="email"
+                id="auth-email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="auth-password">Password</label>
+              <input
+                type="password"
+                id="auth-password"
+                placeholder="Password"
+                required
+              />
+              <span
+                class="material-icons password-toggle"
+                onclick="togglePasswordVisibility('auth-password')"
+                >visibility</span
+              >
+            </div>
+
+            <div class="form-group hidden" id="field-confirm">
+              <label for="register-confirm">Confirm Password</label>
+              <input
+                type="password"
+                id="register-confirm"
+                placeholder="Confirm Password"
+              />
+              <span
+                class="material-icons password-toggle"
+                onclick="togglePasswordVisibility('register-confirm')"
+                >visibility</span
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="btn auth-submit-btn"
+              id="auth-submit-action"
+            >
+              LOG IN
+            </button>
+          </form>
+        </div>
+
+        <div class="auth-graphic-side">
+          <img src="assets/Movo_Mascot.png" alt="Movo Mascot" />
+          <p>Meet Movo, Movex's Mascot</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="assets/Movex_M_Logo.png" alt="Movex" />
+      </div>
+      <div class="footer-info">Support: support.movex@gmail.com</div>
+      <nav class="footer-links">
+        <a href="movex.html">Home Dashboard</a>
+      </nav>
+      <span class="footer-year">Demo Project – 2026</span>
+    </footer>
+
+    <script>
+      let currentMode = "login";
+
+      // URL Query Interceptor parsing layer
+      document.addEventListener("DOMContentLoaded", () => {
+        // Look-ahead lifecycle session checker validation loop
+        fetch("backEnd/auth-check.php")
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.authenticated === true) {
+              window.location.href = "track.html"; // Bounce directly into operations if session exists
+            }
+          })
+          .catch((err) =>
+            console.log("Session lookup offline. Proceeding normally."),
+          );
+
+        // Read initialization parameter states
+        const urlParams = new URLSearchParams(window.location.search);
+        const modeParam = urlParams.get("mode");
+        if (modeParam === "signup") {
+          switchAuthMode("signup");
+        }
+      });
+
+      // View Switching Transitions state engine
+      function switchAuthMode(targetMode) {
+        currentMode = targetMode;
+
+        const tabLogin = document.getElementById("tab-login");
+        const tabSignup = document.getElementById("tab-signup");
+        const nameField = document.getElementById("field-fullname");
+        const confirmField = document.getElementById("field-confirm");
+        const submitBtn = document.getElementById("auth-submit-action");
+
+        if (targetMode === "login") {
+          tabLogin.classList.add("active");
+          tabSignup.classList.remove("active");
+          nameField.classList.add("hidden");
+          confirmField.classList.add("hidden");
+          submitBtn.textContent = "LOG IN";
+
+          document.getElementById("register-name").removeAttribute("required");
+          document
+            .getElementById("register-confirm")
+            .removeAttribute("required");
+        } else {
+          tabSignup.classList.add("active");
+          tabLogin.classList.remove("active");
+          nameField.classList.remove("hidden");
+          confirmField.classList.remove("hidden");
+          submitBtn.textContent = "SIGN UP";
+
+          document
+            .getElementById("register-name")
+            .setAttribute("required", "required");
+          document
+            .getElementById("register-confirm")
+            .setAttribute("required", "required");
+        }
+      }
+
+      // Password Visibility eye toggle wrapper
+      function togglePasswordVisibility(fieldId) {
+        const input = document.getElementById(fieldId);
+        const icon = input.nextElementSibling;
+        if (input.type === "password") {
+          input.type = "text";
+          icon.textContent = "visibility_off";
+        } else {
+          input.type = "password";
+          icon.textContent = "visibility";
+        }
+      }
+
+      // Form Submission Router Endpoint dispatcher
+      document.getElementById("auth-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("auth-email").value;
+        const password = document.getElementById("auth-password").value;
+
+        if (currentMode === "login") {
+          // Run login fetch protocol sequence
+          fetch("backEnd/auth-login.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                window.location.href = "track.html";
+              } else {
+                alert("Error: " + data.message);
+              }
+            });
+        } else {
+          // Run registration signup fetch protocol sequence
+          const name = document.getElementById("register-name").value;
+          const confirmPass = document.getElementById("register-confirm").value;
+
+          if (password !== confirmPass) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          fetch("backEnd/auth-signup.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                alert("Account created successfully! Please log in.");
+                switchAuthMode("login");
+              } else {
+                alert("Error: " + data.message);
+              }
+            });
+        }
+      });
+
+      // Button ripple / active state animations interaction binding
+      document.querySelectorAll(".btn").forEach((btn) => {
+        btn.addEventListener("mousedown", () => btn.classList.add("active"));
+        btn.addEventListener("mouseup", () =>
+          setTimeout(() => btn.classList.remove("active"), 180),
+        );
+        btn.addEventListener("mouseleave", () =>
+          btn.classList.remove("active"),
+        );
+      });
+    </script>
+  </body>
+</html>

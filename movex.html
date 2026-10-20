@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="movex.css" />
+    <title>Movex — Fast. Strong. Reliable.</title>
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+      <div class="nav-logo">
+        <img src="assets/Movex_M_Logo.png" alt="Movex" />
+      </div>
+      <ul class="nav-links">
+        <!-- Shipping Dropdown -->
+        <li class="dropdown" id="shipping-menu">
+          <span class="dropdown-trigger">Shipping ▾</span>
+          <ul class="dropdown-menu">
+            <li><a href="track.html">Track Delivery</a></li>
+            <li><a href="send.html">Send Package</a></li>
+            <li><a href="send.html?action=estimate">Calculate Estimate</a></li>
+            <li><a href="send.html?action=bulk">Bulk Shipping</a></li>
+          </ul>
+        </li>
+
+        <!-- Network Dropdown -->
+        <li class="dropdown" id="network-menu">
+          <span class="dropdown-trigger">Network ▾</span>
+          <ul class="dropdown-menu">
+            <li><a href="#map-section-target">Lockers Map</a></li>
+          </ul>
+        </li>
+
+        <!-- Business Dropdown -->
+        <li class="dropdown" id="business-menu">
+          <span class="dropdown-trigger">Business ▾</span>
+          <ul class="dropdown-menu">
+            <li><a href="auth.html?mode=signup">Join Us</a></li>
+          </ul>
+        </li>
+
+        <!-- Support Dropdown -->
+        <li class="dropdown" id="support-menu">
+          <span class="dropdown-trigger">Support ▾</span>
+          <ul class="dropdown-menu">
+            <li><a href="mailto:support.movex@gmail.com">Get in Touch</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="nav-right">
+        <!-- Dynamic ID added for JS handling -->
+        <a href="auth.html" class="login-btn" id="nav-auth-btn">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
+          <span id="nav-auth-text">Log in</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+
+      <div class="hero-content">
+        <h1 class="hero-title">
+          WE MOVE<br /><span class="accent">WHAT</span> MATTERS.
+        </h1>
+
+        <div class="hero-tagline-left">
+          <span><span class="material-icons">bolt</span> FAST.</span>
+          <span
+            ><span class="material-icons">shield</span>
+            <span class="orange-text">STRONG</span>.</span
+          >
+          <span><span class="material-icons">inventory_2</span> RELIABLE.</span>
+        </div>
+
+        <div class="hero-actions">
+          <!-- 1. Added track.html redirect -->
+          <button
+            class="btn"
+            id="btn-track"
+            onclick="window.location.href = 'track.html'"
+            style="
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <span
+              class="material-icons"
+              style="
+                font-size: 18px;
+                margin: 0;
+                line-height: 1;
+                display: inline-block;
+              "
+              >track_changes</span
+            >
+            TRACK PACKAGE
+          </button>
+
+          <!-- 2. Added smooth scroll directly down to your Map Section below -->
+          <button
+            class="btn"
+            id="btn-locker"
+            onclick="
+              document
+                .getElementById('map-section-target')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+            style="
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <!--Custom svg made in Figma-->
+            <svg
+              width="48"
+              height="50"
+              viewBox="0 0 48 50"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M36.66 38.75C37.82 37.5992 38.4 36.1905 38.4 34.5238C38.4 32.8571 37.82 31.4484 36.66 30.2976C35.5 29.1468 34.08 28.5714 32.4 28.5714C30.72 28.5714 29.3 29.1468 28.14 30.2976C26.98 31.4484 26.4 32.8571 26.4 34.5238C26.4 36.1905 26.98 37.5992 28.14 38.75C29.3 39.9008 30.72 40.4762 32.4 40.4762C34.08 40.4762 35.5 39.9008 36.66 38.75ZM44.64 50L38.16 43.5714C37.32 44.127 36.41 44.5437 35.43 44.8214C34.45 45.0992 33.44 45.2381 32.4 45.2381C29.4 45.2381 26.85 44.1964 24.75 42.1131C22.65 40.0298 21.6 37.5 21.6 34.5238C21.6 31.5476 22.65 29.0179 24.75 26.9345C26.85 24.8512 29.4 23.8095 32.4 23.8095C35.4 23.8095 37.95 24.8512 40.05 26.9345C42.15 29.0179 43.2 31.5476 43.2 34.5238C43.2 35.5556 43.06 36.5575 42.78 37.5298C42.5 38.502 42.08 39.4048 41.52 40.2381L48 46.6667L44.64 50Z"
+                fill="currentColor"
+              />
+              <path
+                d="M19.2 0C24.28 0 28.7509 1.76494 32.6109 5.29669C36.4709 8.82843 38.4 13.5719 38.4 19.5243C38.4 20.5455 38.2919 21.5891 38.0812 22.6562C36.6433 21.9775 35.0846 21.5805 33.4195 21.4658C33.5365 20.7982 33.6 20.1516 33.6 19.5243C33.6 15.1989 32.2105 11.6563 29.4305 8.89834C26.6505 6.14041 23.24 4.7619 19.2 4.7619C15.16 4.7619 11.7495 6.14041 8.96953 8.89834C6.18953 11.6563 4.8 15.1989 4.8 19.5243C4.80013 22.3416 5.97923 25.5662 8.33906 29.1969C10.699 32.8277 14.3202 36.8643 19.2 41.3086C19.6232 40.9232 20.0333 40.537 20.4375 40.1576C21.0698 41.4767 21.9417 42.6939 23.0531 43.7965C23.1288 43.8716 23.2084 43.9422 23.2852 44.0151C22.0044 45.1958 20.6448 46.3994 19.2 47.619C12.76 42.1826 7.94953 37.1334 4.76953 32.4707C1.58966 27.8082 0.000124334 23.4924 0 19.5243C0 13.5719 1.92909 8.82843 5.78906 5.29669C9.64906 1.76494 14.12 0 19.2 0Z"
+                fill="currentColor"
+              />
+              <path
+                d="M32.4 30.9524C33.1414 30.9524 33.756 31.1195 34.2984 31.4546C34.0835 31.7909 33.8623 32.1307 33.6305 32.4707C32.5863 34.0017 31.3629 35.5716 29.9672 37.1861C29.9241 37.1468 29.8782 37.1095 29.8359 37.0675C29.138 36.3751 28.8 35.576 28.8 34.5238C28.8 33.4716 29.138 32.6725 29.8359 31.9801C30.5338 31.2877 31.3393 30.9524 32.4 30.9524Z"
+                fill="currentColor"
+              />
+              <path
+                d="M19.2 14.2857C20.52 14.2857 21.6491 14.7529 22.5891 15.6855C23.5291 16.618 24 17.7381 24 19.0476C24 20.3571 23.5291 21.4772 22.5891 22.4098C21.6491 23.3423 20.52 23.8095 19.2 23.8095C17.88 23.8095 16.7509 23.3423 15.8109 22.4098C14.8709 21.4772 14.4 20.3571 14.4 19.0476C14.4 17.7381 14.8709 16.618 15.8109 15.6855C16.7509 14.7529 17.88 14.2857 19.2 14.2857Z"
+                fill="currentColor"
+              />
+            </svg>
+            FIND LOCKERS
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-logo-block">
+        <img
+          src="assets/Movex_Logo_w_moto.png"
+          alt="Movex"
+          class="hero-logo-img"
+        />
+      </div>
+
+      <div class="hero-caption">
+        Send, track and manage deliveries through a fast courier network
+      </div>
+    </section>
+
+    <!-- ===== INFO STRIP (2-col) ===== -->
+    <div class="info-strip">
+      <div class="info-card">
+        <h3>Shipping Shouldn't Be Complicated</h3>
+        <div class="img-overlay-wrap">
+          <img src="assets/mess_warehouse.png" alt="Traditional shipping" />
+        </div>
+        <p>
+          Traditional shipping often means dealing with fragmented pricing, long
+          lines, rigid pickup hours, and zero visibility once your package is on
+          the move.
+        </p>
+        <p>
+          Whether you are sending a gift, returning an item, or managing
+          high-volume business shipments, the old way is slow, inconvenient, and
+          difficult to track.
+        </p>
+      </div>
+      <div class="info-card">
+        <h3>A Smarter Way to Ship</h3>
+        <div class="img-overlay-wrap">
+          <img src="assets/clean_warehouse.png" alt="Smarter shipping" />
+        </div>
+        <p>
+          Movex simplifies logistics from start to finish. Create shipments
+          online, calculate costs instantly, track packages in real time, and
+          utilize smart lockers for flexible pickup and drop-off.
+        </p>
+        <p>
+          Backed by a connected network of couriers and automated lockers,
+          sending a package becomes fast, transparent, and entirely seamless.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== CORE FEATURES ===== -->
+    <section class="features-section">
+      <div class="section-divider"></div>
+      <div class="section-label">Core Features</div>
+
+      <div class="features-container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-label">Feature</div>
+            <h4>Send a Package</h4>
+            <p>
+              Allows users to schedule a courier pickup or drop off items at any
+              of our locker locations.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.72rem;
+                margin-bottom: 6px;
+              "
+            >
+              Requirements:
+            </p>
+            <ul>
+              <li>User must be authenticated;</li>
+              <li>User must complete the standard shipment request form.</li>
+            </ul>
+            <svg class="watermark" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+              />
+            </svg>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-label">Feature</div>
+            <h4>Calculate Cost</h4>
+            <p>
+              Provides an instant shipping estimate, allowing users to quickly
+              compare rates with other delivery options.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.72rem;
+                margin-bottom: 6px;
+              "
+            >
+              Requirements:
+            </p>
+            <ul>
+              <li>
+                User must input package specifications (dimensions and weight);
+              </li>
+              <li>User must specify origin and destination locations.</li>
+            </ul>
+            <svg class="watermark" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-2 0H3V6h14v8zm-7-1c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z"
+              />
+            </svg>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-label">Feature</div>
+            <h4>Track a Package</h4>
+            <p>
+              Provides real-time status updates using a unique tracking code.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.72rem;
+                margin-bottom: 6px;
+              "
+            >
+              Requirements:
+            </p>
+            <ul>
+              <li>User must enter a valid AWB code.</li>
+            </ul>
+            <svg class="watermark" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="features-grid-bottom">
+          <div class="feature-card">
+            <div class="feature-label">Feature</div>
+            <h4>Find a Locker</h4>
+            <p>
+              Helps users locate locker terminals on an interactive map within
+              our operational service area.
+            </p>
+            <svg class="watermark" viewBox="0 0 48 50" fill="currentColor">
+              <path
+                d="M36.66 38.75C37.82 37.5992 38.4 36.1905 38.4 34.5238C38.4 32.8571 37.82 31.4484 36.66 30.2976C35.5 29.1468 34.08 28.5714 32.4 28.5714C30.72 28.5714 29.3 29.1468 28.14 30.2976C26.98 31.4484 26.4 32.8571 26.4 34.5238C26.4 36.1905 26.98 37.5992 28.14 38.75C29.3 39.9008 30.72 40.4762 32.4 40.4762C34.08 40.4762 35.5 39.9008 36.66 38.75ZM44.64 50L38.16 43.5714C37.32 44.127 36.41 44.5437 35.43 44.8214C34.45 45.0992 33.44 45.2381 32.4 45.2381C29.4 45.2381 26.85 44.1964 24.75 42.1131C22.65 40.0298 21.6 37.5 21.6 34.5238C21.6 31.5476 22.65 29.0179 24.75 26.9345C26.85 24.8512 29.4 23.8095 32.4 23.8095C35.4 23.8095 37.95 24.8512 40.05 26.9345C42.15 29.0179 43.2 31.5476 43.2 34.5238C43.2 35.5556 43.06 36.5575 42.78 37.5298C42.5 38.502 42.08 39.4048 41.52 40.2381L48 46.6667L44.64 50Z"
+              />
+              <path
+                d="M19.2 0C24.28 0 28.7509 1.76494 32.6109 5.29669C36.4709 8.82843 38.4 13.5719 38.4 19.5243C38.4 20.5455 38.2919 21.5891 38.0812 22.6562C36.6433 21.9775 35.0846 21.5805 33.4195 21.4658C33.5365 20.7982 33.6 20.1516 33.6 19.5243C33.6 15.1989 32.2105 11.6563 29.4305 8.89834C26.6505 6.14041 23.24 4.7619 19.2 4.7619C15.16 4.7619 11.7495 6.14041 8.96953 8.89834C6.18953 11.6563 4.8 15.1989 4.8 19.5243C4.80013 22.3416 5.97923 25.5662 8.33906 29.1969C10.699 32.8277 14.3202 36.8643 19.2 41.3086C19.6232 40.9232 20.0333 40.537 20.4375 40.1576C21.0698 41.4767 21.9417 42.6939 23.0531 43.7965C23.1288 43.8716 23.2084 43.9422 23.2852 44.0151C22.0044 45.1958 20.6448 46.3994 19.2 47.619C12.76 42.1826 7.94953 37.1334 4.76953 32.4707C1.58966 27.8082 0.000124334 23.4924 0 19.5243C0 13.5719 1.92909 8.82843 5.78906 5.29669C9.64906 1.76494 14.12 0 19.2 0Z"
+              />
+              <path
+                d="M32.4 30.9524C33.1414 30.9524 33.756 31.1195 34.2984 31.4546C34.0835 31.7909 33.8623 32.1307 33.6305 32.4707C32.5863 34.0017 31.3629 35.5716 29.9672 37.1861C29.9241 37.1468 29.8782 37.1095 29.8359 37.0675C29.138 36.3751 28.8 35.576 28.8 34.5238C28.8 33.4716 29.138 32.6725 29.8359 31.9801C30.5338 31.2877 31.3393 30.9524 32.4 30.9524Z"
+              />
+              <path
+                d="M19.2 14.2857C20.52 14.2857 21.6491 14.7529 22.5891 15.6855C23.5291 16.618 24 17.7381 24 19.0476C24 20.3571 23.5291 21.4772 22.5891 22.4098C21.6491 23.3423 20.52 23.8095 19.2 23.8095C17.88 23.8095 16.7509 23.3423 15.8109 22.4098C14.8709 21.4772 14.4 20.3571 14.4 19.0476C14.4 17.7381 14.8709 16.618 15.8109 15.6855C16.7509 14.7529 17.88 14.2857 19.2 14.2857Z"
+              />
+            </svg>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-label">Feature</div>
+            <h4>Bulk Shipping</h4>
+            <p>
+              Enables users to arrange specialized vehicles and equipment
+              required for high weight volume shipments or heavy freight.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.72rem;
+                margin-bottom: 6px;
+              "
+            >
+              Note:
+            </p>
+            <ul>
+              <li>
+                Bulk shipments are restricted to scheduled courier pickup and
+                delivery services only.
+              </li>
+            </ul>
+            <svg class="watermark" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 13h-2v-3h2v3zm-2-7h-2v3h2V6zm-2 11H3c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v12h4V5h2v14h-4v-2zm-2-2V5H3v10h10zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm11.5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section" id="map-section-target">
+      <div class="section-divider"></div>
+      <div class="section-label">See Where We Deliver</div>
+      <p class="sub-text" style="margin-bottom: 0">
+        Check our active service zones below to see if we cover your area.
+      </p>
+
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2861614.498871026!2d22.424177579105423!3d45.94220461877073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff26958973c5%3A0x17422a4bbda61ab!2sRomania!5e0!3m2!1sen!2sro!4v1717539000000!5m2!1sen!2sro"
+          width="100%"
+          height="460"
+          style="border: 0; display: block"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+      </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section">
+      <div class="stats-bg"></div>
+      <div class="stats-inner">
+        <div class="section-divider"></div>
+        <div class="section-label">Built for Reliable Delivery</div>
+        <p class="sub-text" style="margin-bottom: 36px">
+          From personal deliveries to business logistics, Movex helps keep
+          things moving.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-label">On-Time Rate</div>
+            <div class="stat-value">98%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Deliveries Made</div>
+            <div class="stat-value">10,000+</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Locker Locations</div>
+            <div class="stat-value">100+</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Tracking</div>
+            <div class="stat-value">24/7</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2>Ready to Ship Smarter?</h2>
+      <button
+        class="btn"
+        id="btn-cta"
+        style="font-size: 0.9rem; padding: 12px 30px"
+      >
+        GET STARTED
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M8 5l8 7-8 7"
+            stroke="currentColor"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">
+        <img src="assets/Movex_M_Logo.png" alt="Movex" />
+      </div>
+      <div class="footer-info">Support: support.movex@gmail.com</div>
+      <nav class="footer-links">
+        <a href="send.html">Send Package</a>
+        <a href="track.html">Track Package</a>
+      </nav>
+      <span class="footer-year">Demo Project – 2026</span>
+    </footer>
+
+    <script>
+      // Button ripple / active state
+      document.querySelectorAll(".btn").forEach((btn) => {
+        btn.addEventListener("mousedown", () => btn.classList.add("active"));
+        btn.addEventListener("mouseup", () =>
+          setTimeout(() => btn.classList.remove("active"), 180),
+        );
+        btn.addEventListener("mouseleave", () =>
+          btn.classList.remove("active"),
+        );
+      });
+
+      // Toggle All Navbar Dropdown Menus
+      const dropdowns = document.querySelectorAll(".nav-links .dropdown");
+
+      dropdowns.forEach((dropdown) => {
+        dropdown.addEventListener("click", (e) => {
+          // Prevent immediate closing when clicking inside the menu
+          e.stopPropagation();
+
+          // Close any other open dropdown first
+          dropdowns.forEach((other) => {
+            if (other !== dropdown) other.classList.remove("active");
+          });
+
+          // Toggle the clicked dropdown
+          dropdown.classList.toggle("active");
+        });
+      });
+
+      // Close all menus if the user clicks anywhere else on the screen
+      document.addEventListener("click", () => {
+        dropdowns.forEach((dropdown) => dropdown.classList.remove("active"));
+      });
+    </script>
+  </body>
+</html>

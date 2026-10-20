@@ -647,7 +647,7 @@ footer {
   gap: 8px; /* Spacing between individual icon and its text */
 }
 
-/* Styles your Google Material Icons */
+/* Styles Google Material Icons */
 .hero-tagline-left .material-icons {
   font-size: 1.25rem;
   color: var(--orange); /* Theme orange color */
